@@ -56,7 +56,7 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
   );
   const hasImage = heroImageLink != null && heroImageLink != undefined;
 
-  const decision = useDecision('banner');
+  const [decision] = useDecision('banner');
   console.log('Hero Banner Decision:', decision);
   
   // Feature experiment demo - different hero styles based on banner flag
