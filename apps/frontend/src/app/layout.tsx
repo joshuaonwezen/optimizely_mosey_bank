@@ -23,9 +23,6 @@ import {
 } from '@optimizely/react-sdk'
 
 
-const optimizely = createInstance({
-  sdkKey: 'XfB8W9nDrbKSw77GpAuuY',
-})
 
 
 
@@ -86,7 +83,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const enableDemoTools = EnvTools.readValueAsBoolean("OPTIMIZELY_ONE_HELPER", false);
 
 
-  const
+  const optimizely = createInstance({
+    sdkKey: 'XfB8W9nDrbKSw77GpAuuY',
+  })
 
   return (
     <html lang={ locale }>
