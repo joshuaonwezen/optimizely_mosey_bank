@@ -20,10 +20,6 @@ import {
   OptimizelyProvider,
 } from '@optimizely/react-sdk'
 
-
-
-
-
 /* eslint-disable @next/next/no-css-tags */
 
 const figtree = Figtree({ subsets: ["latin"] });

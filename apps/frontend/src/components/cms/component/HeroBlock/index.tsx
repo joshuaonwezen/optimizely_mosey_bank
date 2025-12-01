@@ -15,6 +15,10 @@ import {
 import { getFragmentData } from "@gql/fragment-masking";
 import ButtonBlock from "../ButtonBlock";
 
+import {
+  useDecision,
+} from '@optimizely/react-sdk'
+
 const ColorClasses = {
   "dark-blue": "on-vulcan",
   blue: "on-azure",
@@ -55,10 +59,43 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
   const decision = useDecision('banner');
   console.log('Hero Banner Decision:', decision);
   
+  // Feature experiment demo - different hero styles based on banner flag
+  const getHeroVariant = () => {
+    if (!decision.enabled) return 'default';
+    
+    const variationKey = decision.variationKey;
+    console.log('Banner variation:', variationKey, decision.enabled);
+    
+    switch (variationKey) {
+      case 'treatment':
+        return 'gradient';
+      case 'control':
+        return 'shadow';
+      default:
+        return 'default';
+    }
+  };
+  
+  const heroVariant = getHeroVariant();
+  
+  // Dynamic styling based on experiment variation
+  const getHeroClasses = () => {
+    const baseClasses = `py-8 lg:py-16 ${ColorClasses[color || "blue"]}`;
+    
+    switch (heroVariant) {
+      case 'gradient':
+        return `${baseClasses} bg-gradient-to-r from-blue-600 to-purple-600`;
+      case 'shadow':
+        return `${baseClasses} shadow-2xl border border-gray-200`;
+      default:
+        return baseClasses;
+    }
+  };
+  
   return (
     <CmsEditable
       as="section"
-      className={`py-8 lg:py-16 ${ColorClasses[color || "blue"]}`}
+      className={getHeroClasses()}
       cmsId={contentLink.key}
     >
       <div className={`w-full @container/card container px-8 mx-auto`}>
@@ -72,6 +109,13 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
           <div
             className={`prose lg:prose-h1:text-7xl lg:prose-h1:my-12 prose-h1:font-bold prose-p:text-2xl prose-p:leading-10 prose-img:my-4 ${hasImage ? "" : "max-w-[900px] mx-auto"}`}
           >
+            {/* Feature Experiment Indicator */}
+            {decision.enabled && (
+              <div className="mb-4 px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full inline-block">
+                🧪 Experiment Active: {heroVariant} variant ({decision.variationKey})
+              </div>
+            )}
+            
             {(inEditMode || eyebrow) && (
               <CmsEditable as="p" cmsFieldName="Eyebrow" className="eyebrow">
                 {eyebrow || "+ Add Eyebrow"}
