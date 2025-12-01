@@ -52,6 +52,9 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
   );
   const hasImage = heroImageLink != null && heroImageLink != undefined;
 
+  const decision = useDecision('banner');
+  console.log('Hero Banner Decision:', decision);
+  
   return (
     <CmsEditable
       as="section"
