@@ -61,10 +61,10 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
   
   // Feature experiment demo - different hero styles based on banner flag
   const getHeroVariant = () => {
-    if (!decision.enabled) return 'default';
+    if (!decision?.enabled) return 'default';
     
     const variationKey = decision.variationKey;
-    console.log('Banner variation:', variationKey, decision.enabled);
+    console.log('Banner variation:', variationKey, decision?.enabled);
     
     switch (variationKey) {
       case 'treatment':
