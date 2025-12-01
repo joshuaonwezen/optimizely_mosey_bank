@@ -15,11 +15,6 @@ import { OptimizelyOneProvider, PageActivator } from "@remkoj/optimizely-one-nex
 import GoogleAnalytics from '@/components/integrations/google-analytics'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import {
-  createInstance,
-  OptimizelyProvider,
-} from '@optimizely/react-sdk'
-
 /* eslint-disable @next/next/no-css-tags */
 
 const figtree = Figtree({ subsets: ["latin"] });
@@ -77,10 +72,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const enableDemoTools = EnvTools.readValueAsBoolean("OPTIMIZELY_ONE_HELPER", false);
 
 
-  const optimizely = createInstance({
-    sdkKey: 'XfB8W9nDrbKSw77GpAuuY',
-  })
-
   return (
     <html lang={ locale }>
       <head>
@@ -89,7 +80,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <ThemeProvider value={{ theme: "system" }}>
         <Body className={`${figtree.className} on-ghost-white overflow-x-hidden`}>
-          <OptimizelyProvider optimizely={optimizely} user={{ id: '177f6914-f92f-4598-9fa8-7c11c6b40371' }}>
             <OptimizelyOneProvider value={{ debug: false }} >
               <PageActivator />
               <div className="flex min-h-screen flex-col justify-between">
@@ -99,7 +89,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
               </div>
               <OptimizelyOneGadget />
             </OptimizelyOneProvider>
-          </OptimizelyProvider>
           <Scripts.Footer />
           { enableGoogleAnalytics && <GoogleAnalytics measurementId={ ga_id } /> }
           <SpeedInsights />

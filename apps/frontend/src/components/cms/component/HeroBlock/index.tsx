@@ -16,8 +16,11 @@ import { getFragmentData } from "@gql/fragment-masking";
 import ButtonBlock from "../ButtonBlock";
 
 import {
-  useDecision,
-} from '@optimizely/react-sdk'
+  createBatchEventProcessor,
+  createInstance,
+  createOdpManager,
+  createPollingProjectConfigManager,
+} from "@optimizely/optimizely-sdk";
 
 const ColorClasses = {
   "dark-blue": "on-vulcan",
@@ -44,6 +47,21 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
   inEditMode,
   contentLink,
 }) => {
+  const SDK_KEY="XfB8W9nDrbKSw77GpAuuY";
+  const pollingConfigManager = createPollingProjectConfigManager({
+    sdkKey: SDK_KEY,
+  });
+  const batchEventProcessor = createBatchEventProcessor();
+  const optimizelyClient = createInstance({
+    projectConfigManager: pollingConfigManager,
+    eventProcessor: batchEventProcessor,
+  });
+
+  const attributes = { logged_in: true };
+  const user = optimizelyClient.createUserContext('user123', attributes);
+
+
+
   const heroImage = getFragmentData(ReferenceDataFragmentDoc, image);
   const heroImageLink = getFragmentData(LinkDataFragmentDoc, heroImage?.url);
   const heroImageSrc = new URL(
@@ -56,7 +74,7 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
   );
   const hasImage = heroImageLink != null && heroImageLink != undefined;
 
-  const [decision] = useDecision('banner');
+  const decision = user.decide('banner');
   console.log('Hero Banner Decision:', decision);
   
   // Feature experiment demo - different hero styles based on banner flag

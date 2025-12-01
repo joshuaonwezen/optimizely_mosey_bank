@@ -46,6 +46,7 @@
     "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.7.1-patched.tgz"
   },
   "dependencies": {
+    "@optimizely/optimizely-sdk": "^6.3.0",
     "@optimizely/react-sdk": "^3.3.0"
   }
 }
