@@ -18,7 +18,6 @@ import ButtonBlock from "../ButtonBlock";
 import {
   createBatchEventProcessor,
   createInstance,
-  createOdpManager,
   createPollingProjectConfigManager,
 } from "@optimizely/optimizely-sdk";
 
