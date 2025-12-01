@@ -2584,6 +2584,46 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@optimizely/optimizely-sdk@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "@optimizely/optimizely-sdk@npm:5.4.0"
+  dependencies:
+    decompress-response: "npm:^4.2.1"
+    json-schema: "npm:^0.4.0"
+    murmurhash: "npm:^2.0.1"
+    ua-parser-js: "npm:^1.0.37"
+    uuid: "npm:^9.0.1"
+  peerDependencies:
+    "@babel/runtime": ^7.0.0
+    "@react-native-async-storage/async-storage": ^1.2.0
+    "@react-native-community/netinfo": ^11.3.2
+    fast-text-encoding: ^1.0.6
+    react-native-get-random-values: ^1.11.0
+  peerDependenciesMeta:
+    "@react-native-async-storage/async-storage":
+      optional: true
+    "@react-native-community/netinfo":
+      optional: true
+    fast-text-encoding:
+      optional: true
+    react-native-get-random-values:
+      optional: true
+  checksum: 10/e5534de7d1c1dedbb85c87f5b5b4b806c5426dd71121d76d757cc49c4782a8de90a607413616e8d663ca580ffddfc7e8289b9babbc0840fcd9a456e06bc0bb06
+  languageName: node
+  linkType: hard
+
+"@optimizely/react-sdk@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "@optimizely/react-sdk@npm:3.3.0"
+  dependencies:
+    "@optimizely/optimizely-sdk": "npm:^5.4.0"
+    hoist-non-react-statics: "npm:^3.3.2"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 10/56f7d16db23a575bb01a650bb2f9c9aba91e8954e5387afeb01a496724f59a3f088bf1aca07a28f2271dcaca9957426a9e8aa18cad619475970b09a5e4a7fcd1
+  languageName: node
+  linkType: hard
+
 "@parcel/watcher-android-arm64@npm:2.5.1":
   version: 2.5.1
   resolution: "@parcel/watcher-android-arm64@npm:2.5.1"
@@ -2931,6 +2971,7 @@ __metadata:
   resolution: "@remkoj/optimizely-frontend@workspace:."
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.2.0"
+    "@optimizely/react-sdk": "npm:^3.3.0"
     "@remkoj/optimizely-graph-client": "npm:^4.3.1"
     "@remkoj/optimizely-graph-functions": "npm:^4.3.1"
     "@types/source-map-support": "npm:^0.5.10"
@@ -7232,7 +7273,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hoist-non-react-statics@npm:^3.3.1":
+"hoist-non-react-statics@npm:^3.3.1, hoist-non-react-statics@npm:^3.3.2":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
   dependencies:

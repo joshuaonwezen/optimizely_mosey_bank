@@ -18,8 +18,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import {
   createInstance,
   OptimizelyProvider,
-  useDecision,
-  withOptimizely,
 } from '@optimizely/react-sdk'
 
 
